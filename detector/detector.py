@@ -57,6 +57,7 @@ from pycocotools.cocoeval import COCOeval
 from pycocotools import mask as maskUtils
 
 # Root directory of the models
+# ROOT_DIR = os.path.abspath("./models")
 ROOT_DIR = os.path.abspath("./models")
 
 # Path to trained weights file
@@ -194,6 +195,7 @@ def evaluate_coco(model, dataset, coco, eval_type="bbox", limit=0, image_ids=Non
     print("Total time: ", time.time() - t_start)
 
 if __name__ == '__main__':
+
     import argparse
 
     # Parse command line arguments
@@ -221,6 +223,10 @@ if __name__ == '__main__':
         reader = csv.reader(csvfile)
         class_map = {row[0]: row[1] for row in reader}
         map_to_one_class = {c: 'Litter' for c in class_map}
+    # Check for GPUs
+    from tensorflow.python.client import device_lib
+
+    print(device_lib.list_local_devices())
 
     # Load datasets
     if args.command == "train":
@@ -248,7 +254,7 @@ if __name__ == '__main__':
     if args.command == "train":
         class TacoTrainConfig(Config):
             NAME = "taco"
-            IMAGES_PER_GPU = 2
+            IMAGES_PER_GPU = 1
             GPU_COUNT = 1
             STEPS_PER_EPOCH = min(1000,int(dataset_train.num_images/(IMAGES_PER_GPU*GPU_COUNT)))
             USE_MINI_MASK = True
@@ -286,7 +292,7 @@ if __name__ == '__main__':
         # Start from ImageNet trained weights
         model_path = model.get_imagenet_weights()
     else:
-        _, model_path = model.get_last_checkpoint(args.model)
+        model_path = str(__import__("pathlib").Path(args.model).absolute())
 
     # Load weights
     if args.model.lower() == "coco":

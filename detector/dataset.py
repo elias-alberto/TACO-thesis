@@ -37,6 +37,7 @@ class Taco(utils.Dataset):
         else:
             ann_filepath += ".json"
 
+
         assert os.path.isfile(ann_filepath)
 
         # Load dataset

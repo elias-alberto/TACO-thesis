@@ -9,9 +9,11 @@ graphviz
 Cython
 jupyterlab
 keras==2.1.6
-tensorflow
+tensorflow==1.15.5
 scipy
 scikit-image
 imgaug
-#pywinpty==1.1.6
+pywinpty==1.1.6
+
+
 mrcnn
