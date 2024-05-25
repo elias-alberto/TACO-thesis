@@ -4,6 +4,8 @@
 
 This fork was made as a part of the BSc graduation thesis for Elias Alberto Martins dos Santos in Mechatronics Engineering at Óbuda University, 2024.
 
+For a quick start on Google Colab, check the file <i> taco_on_colab.ipynb </i>
+
 When I started to experiment with TACO dataset and the provided implementation of Mask RCNN, I faced several issues to make it run: unspecified versions of several packages means that many dependencies were broken when trying to run it with the latest packages, the code was written in outdated Python 3.6, the code for analyzing and viewing the dataset would not run, among other issues. I have upgraded the code to Python 3.7, fixed the coding errors where necessary, and found the right combination of libraries to make it run. I properly documented the entire process on my thesis work, making it easier for other people to understand my modifications and to use this in the future. I have also performed training with different parameters to show how the optimal choice of parameters impacts the performance of the trained model, and made a performance assessment of different GPUs. I have placed a strong emphasis on how to set up everything seamlessly in Google Colab using persistent storage from Google Drive, to ensure anyone interested will be able to quickly get it running even with basic technical knowledge.
 
 I thank Pedro Proença and Pedro Simões for making this available. This fork maintains the same copyright and usage rules as their works. When using these works, please cite me appropriately, and also cite them. For the sake of completeness, below is the original description:
